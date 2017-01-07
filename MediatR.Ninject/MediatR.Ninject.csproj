@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MediatR, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MediatR.2.1.0\lib\net45\MediatR.dll</HintPath>
+    <Reference Include="MediatR, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MediatR.3.0.0\lib\net45\MediatR.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
@@ -52,7 +52,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MediatorConfigurationExtensions.cs" />
     <Compile Include="Resolvers\ContravariantBindingResolver.cs" />
     <Compile Include="Resolvers\CovariantBindingResolver.cs" />
     <Compile Include="Configuration\MediatorConfiguration.cs" />
@@ -61,16 +60,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MediatR.DomainEvents\MediatR.DomainEvents.csproj">
-      <Project>{7FD6965C-CF69-47DD-81B6-4882B4404D76}</Project>
-      <Name>MediatR.DomainEvents</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MediatR.Pipeline\MediatR.Pipeline.csproj">
-      <Project>{A1CB5C8B-51B9-40B2-9E61-64924BB9E51A}</Project>
-      <Name>MediatR.Pipeline</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

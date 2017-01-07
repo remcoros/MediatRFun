@@ -7,11 +7,10 @@ namespace MediatRFun.PipelineTests.ValidatedRequest
         public int Value { get; set; }
     }
 
-    public class RequestWithRuleHandler : RequestHandler<RequestWithRule>
+    public class RequestWithRuleHandler : IRequestHandler<RequestWithRule>
     {
-        protected override void HandleCore(RequestWithRule message)
+        public void Handle(RequestWithRule message)
         {
-
         }
     }
 }

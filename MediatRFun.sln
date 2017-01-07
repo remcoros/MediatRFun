@@ -5,11 +5,15 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediatRFun", "MediatRFun\MediatRFun.csproj", "{CAEDB2DD-1EFF-49CA-830D-9A4A6C1B4622}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediatR.Pipeline", "MediatR.Pipeline\MediatR.Pipeline.csproj", "{A1CB5C8B-51B9-40B2-9E61-64924BB9E51A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediatR.Ninject", "MediatR.Ninject\MediatR.Ninject.csproj", "{93516A53-5BCF-4B09-985D-F59B2D1EF1DC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediatR.DomainEvents", "MediatR.DomainEvents\MediatR.DomainEvents.csproj", "{7FD6965C-CF69-47DD-81B6-4882B4404D76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediatR.DomainEvents.Ninject", "MediatR.DomainEvents.Ninject\MediatR.DomainEvents.Ninject.csproj", "{3575116C-3915-4A79-A3F2-9903C45F78CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediatR.FluentValidation", "MediatR.FluentValidation\MediatR.FluentValidation.csproj", "{FB03FBDB-A6CF-468F-80F4-A5922EAA4902}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediatR.FluentValidation.Ninject", "MediatR.FluentValidation.Ninject\MediatR.FluentValidation.Ninject.csproj", "{EB49B306-18D4-4D09-B16C-8C7AA76740AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +25,6 @@ Global
 		{CAEDB2DD-1EFF-49CA-830D-9A4A6C1B4622}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CAEDB2DD-1EFF-49CA-830D-9A4A6C1B4622}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CAEDB2DD-1EFF-49CA-830D-9A4A6C1B4622}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A1CB5C8B-51B9-40B2-9E61-64924BB9E51A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1CB5C8B-51B9-40B2-9E61-64924BB9E51A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A1CB5C8B-51B9-40B2-9E61-64924BB9E51A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A1CB5C8B-51B9-40B2-9E61-64924BB9E51A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{93516A53-5BCF-4B09-985D-F59B2D1EF1DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{93516A53-5BCF-4B09-985D-F59B2D1EF1DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93516A53-5BCF-4B09-985D-F59B2D1EF1DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +33,18 @@ Global
 		{7FD6965C-CF69-47DD-81B6-4882B4404D76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FD6965C-CF69-47DD-81B6-4882B4404D76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FD6965C-CF69-47DD-81B6-4882B4404D76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3575116C-3915-4A79-A3F2-9903C45F78CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3575116C-3915-4A79-A3F2-9903C45F78CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3575116C-3915-4A79-A3F2-9903C45F78CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3575116C-3915-4A79-A3F2-9903C45F78CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB03FBDB-A6CF-468F-80F4-A5922EAA4902}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB03FBDB-A6CF-468F-80F4-A5922EAA4902}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB03FBDB-A6CF-468F-80F4-A5922EAA4902}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB03FBDB-A6CF-468F-80F4-A5922EAA4902}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB49B306-18D4-4D09-B16C-8C7AA76740AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB49B306-18D4-4D09-B16C-8C7AA76740AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB49B306-18D4-4D09-B16C-8C7AA76740AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB49B306-18D4-4D09-B16C-8C7AA76740AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

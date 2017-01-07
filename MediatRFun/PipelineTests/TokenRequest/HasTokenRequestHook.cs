@@ -1,94 +1,66 @@
-﻿using MediatR.Pipeline;
+﻿using System;
+using System.Threading.Tasks;
+using MediatR.Pipeline;
 
 namespace MediatRFun.PipelineTests.TokenRequest
 {
     public class HasTokenRequestHook :
-        RequestHook<IToken, object>
+        IRequestPreProcessor<IToken>,
+        IRequestPostProcessor<IToken, object>
     {
         public static int PreHandleCount;
         public static int PostHandleCount;
-        public static int ProcessResponseCount;
-
-        protected override void OnPreRequest(IToken request)
-        {
-            PreHandleCount++;
-        }
-
-        protected override void OnPostRequest(IToken request, object response)
-        {
-            PostHandleCount++;
-        }
-
-        protected override void ProcessResponse(object response)
-        {
-            ProcessResponseCount++;
-        }
 
         public static void Reset()
         {
             PreHandleCount = 0;
             PostHandleCount = 0;
-            ProcessResponseCount = 0;
+        }
+
+        public Task Process(IToken request)
+        {
+            PreHandleCount++;
+            return Task.CompletedTask;
+        }
+
+        public Task Process(IToken request, object response)
+        {
+            PostHandleCount++;
+            return Task.CompletedTask;
         }
     }
 
     public class HasTokenWithTestResponseRequestHook :
-        RequestHook<IToken, TestResponse>
+        IRequestPostProcessor<IToken, TestResponse>
     {
-        public static int PreHandleCount;
         public static int PostHandleCount;
-        public static int ProcessResponseCount;
-
-        protected override void OnPreRequest(IToken request)
-        {
-            PreHandleCount++;
-        }
-
-        protected override void OnPostRequest(IToken request, TestResponse response)
-        {
-            PostHandleCount++;
-        }
-
-        protected override void ProcessResponse(TestResponse response)
-        {
-            ProcessResponseCount++;
-        }
 
         public static void Reset()
         {
-            PreHandleCount = 0;
             PostHandleCount = 0;
-            ProcessResponseCount = 0;
+        }
+
+        public Task Process(IToken request, TestResponse response)
+        {
+            PostHandleCount++;
+            return Task.CompletedTask;
         }
     }
 
     public class HasTokenWithResponseStringRequestHook :
-        RequestHook<IToken, string>
+        IRequestPostProcessor<IToken, string>
     {
-        public static int PreHandleCount;
         public static int PostHandleCount;
-        public static int ProcessResponseCount;
-
-        protected override void OnPreRequest(IToken request)
-        {
-            PreHandleCount++;
-        }
-
-        protected override void OnPostRequest(IToken request, string response)
-        {
-            PostHandleCount++;
-        }
-
-        protected override void ProcessResponse(string response)
-        {
-            ProcessResponseCount++;
-        }
 
         public static void Reset()
         {
-            PreHandleCount = 0;
             PostHandleCount = 0;
-            ProcessResponseCount = 0;
+        }
+
+        public Task Process(IToken request, string response)
+        {
+            PostHandleCount++;
+            return Task.CompletedTask;
         }
     }
 }

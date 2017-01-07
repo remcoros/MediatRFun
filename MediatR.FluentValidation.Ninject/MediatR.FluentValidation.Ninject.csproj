@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7FD6965C-CF69-47DD-81B6-4882B4404D76}</ProjectGuid>
+    <ProjectGuid>{EB49B306-18D4-4D09-B16C-8C7AA76740AB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MediatR.DomainEvents</RootNamespace>
-    <AssemblyName>MediatR.DomainEvents</AssemblyName>
+    <RootNamespace>MediatR.FluentValidation.Ninject</RootNamespace>
+    <AssemblyName>MediatR.FluentValidation.Ninject</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,8 +30,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentValidation, Version=6.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.6.2.1.0\lib\Net45\FluentValidation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MediatR, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MediatR.3.0.0\lib\net45\MediatR.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Conventions, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.Conventions.3.2.0.0\lib\net45-full\Ninject.Extensions.Conventions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -44,15 +56,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Aggregate.cs" />
-    <Compile Include="CommandHandler.cs" />
-    <Compile Include="IAggregate.cs" />
-    <Compile Include="IAggregateRepository.cs" />
-    <Compile Include="ICommand.cs" />
-    <Compile Include="InMemoryRepository.cs" />
-    <Compile Include="Internal\AggregateAsDynamicExtensions.cs" />
-    <Compile Include="Internal\ReflectionMagic.cs" />
+    <Compile Include="MediatorConfigurationExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MediatR.FluentValidation\MediatR.FluentValidation.csproj">
+      <Project>{FB03FBDB-A6CF-468F-80F4-A5922EAA4902}</Project>
+      <Name>MediatR.FluentValidation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MediatR.Ninject\MediatR.Ninject.csproj">
+      <Project>{93516A53-5BCF-4B09-985D-F59B2D1EF1DC}</Project>
+      <Name>MediatR.Ninject</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

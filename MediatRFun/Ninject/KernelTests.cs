@@ -23,25 +23,26 @@ namespace MediatRFun.Ninject
 
             kernel.Bind(x => x.FromAssemblyContaining<KernelTests>()
                 .SelectAllClasses()
-                .InheritedFrom(typeof(IPreRequestHandler<,>)).BindSelection((service, types) => new[] { types.First(t => t.IsGenericType && t.GetGenericTypeDefinition() == typeof(IPreRequestHandler<,>)) }));
+                .InheritedFrom(typeof(IRequestPreProcessor<>))
+                .BindSelection((service, types) => new[]
+                    {
+                        types.First(t => t.IsGenericType && t.GetGenericTypeDefinition() == typeof(IRequestPreProcessor<>))
+                    }));
 
             kernel.Bind(x => x.FromAssemblyContaining<KernelTests>()
                 .SelectAllClasses()
-                .InheritedFrom(typeof(IPostRequestHandler<,>)).BindSelection((service, types) => new[] { types.First(t => t.IsGenericType && t.GetGenericTypeDefinition() == typeof(IPostRequestHandler<,>)) }));
+                .InheritedFrom(typeof(IRequestPostProcessor<,>))
+                .BindSelection((service, types) => new[]
+                    {
+                        types.First(t => t.IsGenericType && t.GetGenericTypeDefinition() == typeof(IRequestPostProcessor<,>))
+                    }));
 
-            kernel.Bind(x => x.FromAssemblyContaining<KernelTests>()
-                .SelectAllClasses()
-                .InheritedFrom(typeof(IResponseProcessor<>)).BindSelection((service, types) => new[] { types.First(t => t.IsGenericType && t.GetGenericTypeDefinition() == typeof(IResponseProcessor<>)) }));
+            var h = kernel.GetAll<IRequestPreProcessor<TestTokenRequest>>();
 
-            var h = kernel.GetAll<IPreRequestHandler<TestTokenRequest, TestResponse>>();
+            h.Count().Should().Be(1);
 
-            h.Count().Should().Be(2);
-
-            var h2 = kernel.GetAll<IPostRequestHandler<TestTokenRequest, object>>();
+            var h2 = kernel.GetAll<IRequestPostProcessor<TestTokenRequest, object>>();
             h2.Count().Should().Be(2);
-
-            var h3 = kernel.GetAll<IResponseProcessor<TestResponse>>();
-            h3.Count().Should().Be(0);
         }
     }
 }

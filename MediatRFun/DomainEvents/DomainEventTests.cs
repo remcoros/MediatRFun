@@ -52,12 +52,9 @@ namespace MediatRFun.DomainEvents
         private IMediator CreateMediator()
         {
             _kernel = new StandardKernel();
-            _kernel.AddMediatR(c =>
-                    c.BindHandlers(x => x.FromAssemblyContaining<SimplePipelineTests>())
-                    .AddDomainEvents()
-            //.BindHandlers(x => x.FromAssemblyContaining(typeof(CommandHandler<>)))
-            //.DecoratePipeline(typeof(ValidationHandler<,>))
-            );
+            _kernel.AddMediatR(x => x.FromAssemblyContaining<SimplePipelineTests>())
+                .AddValidation()
+                .AddDomainEvents();
 
             var mediatr = _kernel.Get<IMediator>();
             return mediatr;

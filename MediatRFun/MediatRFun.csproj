@@ -30,20 +30,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentAssertions, Version=4.17.0.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentAssertions.4.17.0\lib\net45\FluentAssertions.dll</HintPath>
+    <Reference Include="FluentAssertions, Version=4.18.0.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentAssertions.4.18.0\lib\net45\FluentAssertions.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="FluentAssertions.Core, Version=4.17.0.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentAssertions.4.17.0\lib\net45\FluentAssertions.Core.dll</HintPath>
+    <Reference Include="FluentAssertions.Core, Version=4.18.0.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentAssertions.4.18.0\lib\net45\FluentAssertions.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FluentValidation, Version=6.2.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentValidation.6.2.1.0\lib\Net45\FluentValidation.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MediatR, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MediatR.2.1.0\lib\net45\MediatR.dll</HintPath>
+    <Reference Include="MediatR, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MediatR.3.0.0\lib\net45\MediatR.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
@@ -86,6 +86,7 @@
     <Compile Include="DomainEvents\ChatServer\ChatRoom.Commands.cs" />
     <Compile Include="DomainEvents\DomainEventTests.cs" />
     <Compile Include="DomainEvents\ChatServer\ChatRoom.Events.cs" />
+    <Compile Include="DomainEvents\FlexDomain\Class1.cs" />
     <Compile Include="Ninject\KernelTests.cs" />
     <Compile Include="PipelineTests\PipelineBuilderTests.cs" />
     <Compile Include="PipelineTests\TokenRequest\TestTokenRequest.cs" />
@@ -107,17 +108,25 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MediatR.DomainEvents.Ninject\MediatR.DomainEvents.Ninject.csproj">
+      <Project>{3575116c-3915-4a79-a3f2-9903c45f78cd}</Project>
+      <Name>MediatR.DomainEvents.Ninject</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MediatR.DomainEvents\MediatR.DomainEvents.csproj">
       <Project>{7FD6965C-CF69-47DD-81B6-4882B4404D76}</Project>
       <Name>MediatR.DomainEvents</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MediatR.FluentValidation.Ninject\MediatR.FluentValidation.Ninject.csproj">
+      <Project>{eb49b306-18d4-4d09-b16c-8c7aa76740ab}</Project>
+      <Name>MediatR.FluentValidation.Ninject</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MediatR.FluentValidation\MediatR.FluentValidation.csproj">
+      <Project>{fb03fbdb-a6cf-468f-80f4-a5922eaa4902}</Project>
+      <Name>MediatR.FluentValidation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MediatR.Ninject\MediatR.Ninject.csproj">
       <Project>{93516A53-5BCF-4B09-985D-F59B2D1EF1DC}</Project>
       <Name>MediatR.Ninject</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MediatR.Pipeline\MediatR.Pipeline.csproj">
-      <Project>{A1CB5C8B-51B9-40B2-9E61-64924BB9E51A}</Project>
-      <Name>MediatR.Pipeline</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

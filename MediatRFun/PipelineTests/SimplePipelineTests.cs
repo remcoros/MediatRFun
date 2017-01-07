@@ -24,14 +24,14 @@ namespace MediatRFun.PipelineTests
         }
 
         [Fact]
-        public void TestRequest()
+        public async void TestRequest()
         {
             ResetTestValues();
 
             var mediatr = CreateMediator();
             var h = _kernel.Get<IRequestHandler<TestRequest, TestResponse>>();
 
-            var response = mediatr.Send(new TestRequest());
+            var response = await mediatr.Send(new TestRequest());
 
             response.Should().NotBeNull();
             response.Message.Should().Be("ModifyResponseHook");
@@ -49,15 +49,10 @@ namespace MediatRFun.PipelineTests
 
             HasTokenRequestHook.PreHandleCount.Should().Be(1);
             HasTokenRequestHook.PostHandleCount.Should().Be(1);
-            HasTokenRequestHook.ProcessResponseCount.Should().Be(1);
 
-            HasTokenWithTestResponseRequestHook.PreHandleCount.Should().Be(1);
             HasTokenWithTestResponseRequestHook.PostHandleCount.Should().Be(1);
-            HasTokenWithTestResponseRequestHook.ProcessResponseCount.Should().Be(1);
 
-            HasTokenWithResponseStringRequestHook.PreHandleCount.Should().Be(0);
             HasTokenWithResponseStringRequestHook.PostHandleCount.Should().Be(0);
-            HasTokenWithResponseStringRequestHook.ProcessResponseCount.Should().Be(0);
         }
 
         [Fact]
@@ -70,26 +65,21 @@ namespace MediatRFun.PipelineTests
 
             HasTokenRequestHook.PreHandleCount.Should().Be(1);
             HasTokenRequestHook.PostHandleCount.Should().Be(1);
-            HasTokenRequestHook.ProcessResponseCount.Should().Be(1);
 
-            HasTokenWithTestResponseRequestHook.PreHandleCount.Should().Be(0);
             HasTokenWithTestResponseRequestHook.PostHandleCount.Should().Be(0);
-            HasTokenWithTestResponseRequestHook.ProcessResponseCount.Should().Be(0);
 
-            HasTokenWithResponseStringRequestHook.PreHandleCount.Should().Be(1);
             HasTokenWithResponseStringRequestHook.PostHandleCount.Should().Be(1);
-            HasTokenWithResponseStringRequestHook.ProcessResponseCount.Should().Be(1);
         }
 
         [Fact]
-        public void ValidatedRequest()
+        public async void ValidatedRequest()
         {
             ResetTestValues();
 
             var mediatr = CreateMediator();
-            Assert.Throws<ValidationException>(() =>
+            await Assert.ThrowsAsync<ValidationException>(async () =>
                 {
-                    mediatr.Send(new RequestWithRule());
+                    await mediatr.Send(new RequestWithRule());
                 });
 
             var response = mediatr.Send(new RequestWithRule()
@@ -109,12 +99,11 @@ namespace MediatRFun.PipelineTests
         private IMediator CreateMediator()
         {
             _kernel = new StandardKernel();
-            _kernel.AddMediatR(c =>
-                c.BindHandlers(x => x.FromAssemblyContaining<SimplePipelineTests>())
-                .AddDomainEvents()
-                .DecoratePipeline(typeof(ValidationHandler<,>)));
+            _kernel.AddMediatR(x => x.FromAssemblyContaining<SimplePipelineTests>())
+                .AddValidation()
+                .AddDomainEvents();
 
-            _kernel.Bind(x => x.FromThisAssembly().SelectAllClasses().InheritedFrom(typeof(IValidator<>)).BindAllInterfaces());
+            // _kernel.Bind(x => x.FromThisAssembly().SelectAllClasses().InheritedFrom(typeof(IValidator<>)).BindAllInterfaces());
 
             var mediatr = _kernel.Get<IMediator>();
             return mediatr;

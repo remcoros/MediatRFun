@@ -1,16 +1,16 @@
 using System.Linq;
 using MediatR.DomainEvents;
 using MediatR.Ninject.Configuration;
-using MediatR.Pipeline;
 using Ninject;
 
 namespace MediatR.Ninject
 {
     public static class MediatorConfigurationExtensions
     {
-        public static MediatorConfiguration AddDomainEvents(this MediatorConfiguration configuration)
+        public static MediatorConfiguration AddDomainEvents(this MediatorConfiguration config)
         {
-            configuration.Kernel.Bind(typeof(IRequestHandler<,>))
+            var kernel = config.Kernel;
+            kernel.Bind(typeof(IRequestHandler<,>))
                 .ToMethod(c =>
                     {
                         if (c.GenericArguments?.Length == 2)
@@ -23,8 +23,8 @@ namespace MediatR.Ninject
                         }
 
                         return null;
-                    }).WhenInjectedInto(typeof(RequestPipeline<,>)); ;
-            return configuration;
+                    });
+            return config;
         }
     }
 }
