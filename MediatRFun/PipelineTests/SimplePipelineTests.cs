@@ -40,12 +40,12 @@ namespace MediatRFun.PipelineTests
         }
 
         [Fact]
-        public void TestTokenRequest()
+        public async void TestTokenRequest()
         {
             ResetTestValues();
 
             var mediatr = CreateMediator();
-            var response = mediatr.Send(new TestTokenRequest());
+            var response = await mediatr.Send(new TestTokenRequest());
 
             HasTokenRequestHook.PreHandleCount.Should().Be(1);
             HasTokenRequestHook.PostHandleCount.Should().Be(1);
@@ -56,12 +56,12 @@ namespace MediatRFun.PipelineTests
         }
 
         [Fact]
-        public void TestTokenWithStringResponseRequest()
+        public async void TestTokenWithStringResponseRequest()
         {
             ResetTestValues();
 
             var mediatr = CreateMediator();
-            var response = mediatr.Send(new TestTokenWithStringResponseRequest());
+            var response = await mediatr.Send(new TestTokenWithStringResponseRequest());
 
             HasTokenRequestHook.PreHandleCount.Should().Be(1);
             HasTokenRequestHook.PostHandleCount.Should().Be(1);
@@ -82,7 +82,7 @@ namespace MediatRFun.PipelineTests
                     await mediatr.Send(new RequestWithRule());
                 });
 
-            var response = mediatr.Send(new RequestWithRule()
+            await mediatr.Send(new RequestWithRule()
             {
                 Value = 1
             });

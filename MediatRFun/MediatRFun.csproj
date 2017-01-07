@@ -88,7 +88,6 @@
     <Compile Include="DomainEvents\ChatServer\ChatRoom.Events.cs" />
     <Compile Include="DomainEvents\FlexDomain\Class1.cs" />
     <Compile Include="Ninject\KernelTests.cs" />
-    <Compile Include="PipelineTests\PipelineBuilderTests.cs" />
     <Compile Include="PipelineTests\TokenRequest\TestTokenRequest.cs" />
     <Compile Include="PipelineTests\TokenRequest\TestTokenRequestHandler.cs" />
     <Compile Include="PipelineTests\TokenRequest\HasTokenRequestHook.cs" />

@@ -25,14 +25,14 @@ namespace MediatRFun.DomainEvents
         }
 
         [Fact]
-        public void ChatRoomSample()
+        public async void ChatRoomSample()
         {
             var mediatr = CreateMediator();
             _kernel.Bind(typeof(IAggregateRepository<>)).To(typeof(InMemoryRepository<>)).InSingletonScope();
 
-            mediatr.Send(new ChatRoom.Commands.CreateRoom() { Id = "test", Title = "Test" });
-            mediatr.Send(new ChatUser.Commands.CreateUser() { Id = "user1", Name = "User" });
-            mediatr.Send(new ChatRoom.Commands.JoinUser() { Id = "test", UserId = "user1" });
+            await mediatr.Send(new ChatRoom.Commands.CreateRoom() { Id = "test", Title = "Test" });
+            await mediatr.Send(new ChatUser.Commands.CreateUser() { Id = "user1", Name = "User" });
+            await mediatr.Send(new ChatRoom.Commands.JoinUser() { Id = "test", UserId = "user1" });
 
             var roomStore = _kernel.Get<IAggregateRepository<ChatRoom>>();
             var userStore = _kernel.Get<IAggregateRepository<ChatUser>>();
